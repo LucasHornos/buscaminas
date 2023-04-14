@@ -33,7 +33,7 @@ public Integer columnaRandom() {
 	return columnaAleatoria;	
 }
 
-public void creacionJuego() {
+public void creacionJuegoFacil() {
 	Integer filaRandom = filaRandom();
 	Integer columnaRandom = columnaRandom();
 	
@@ -46,11 +46,14 @@ public void creacionJuego() {
 	}
 	
 	this.tablero[filaRandom][columnaRandom] = 0;
+	this.tablero[filaRandom][columnaRandom] = 0;
+		
+			
 		
 }
 
 public void mostrarTablero() {
-	creacionJuego();
+	creacionJuegoFacil();
 	for (int i = 0; i < tablero.length; i++) {
 		for (int j = 0; j < tablero.length; j++) {
 		System.out.print(this.tablero[i][j] + " ");
@@ -59,6 +62,18 @@ public void mostrarTablero() {
 		System.out.println(" ");
 	}
 
+}
+
+
+public void creacionJuegoMedio() {
+	// TODO Auto-generated method stub
+	
+}
+
+
+public void creacionJuegoTécnicoEspecialistaEnDesactivaciónDeArtefactosExplosivos() {
+	// TODO Auto-generated method stub
+	
 }
 
 }
