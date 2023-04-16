@@ -80,7 +80,13 @@ public class Juego {
          Integer fila = teclado.nextInt();
          mostrarMensaje("Seleccionar columna");
          Integer columna = teclado.nextInt();
-         tablero.comprobarCantidadBomba(fila, columna);
+         
+         if (tablero.comprobarCantidadBomba(fila, columna) == 9) {
+			System.out.println("perdiste forrito");
+		} else {
+			System.out.println("La cantidad de bombas alrededor es: " + tablero.comprobarCantidadBomba(fila, columna));
+		}
+        
 	}
 		
 	}
