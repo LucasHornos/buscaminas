@@ -12,80 +12,43 @@ public class Juego {
 	static Scanner teclado = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Tablero tablero = new Tablero();
-
-		/*
-		 * hola dificultad seleccione casilla fila/columna
-		 * 
-		 */
-		mostrarMensaje("Bienvenido al buscaminas");
-		int opcion;
-		do {
-			mostrarMensaje("Elija la opcion que desee\n1.Para seleccionar la dificultad");
-			opcion = teclado.nextInt();
-			switch (opcion) {
-			case DIFICULTAD:
-				eleccionDificultad(tablero);
-				break;
-
-			default:
-				mostrarMensaje("Opcion incorrecta ");
-				break;
-			}
-		} while (opcion != 10);
-
+		tablero.creacionJuegoFacil();
 		tablero.mostrarTablero();
+		comienzoJuego(tablero);
 	}
-
-	private static void mostrarMensaje(String mensaje) {
-		System.out.println(mensaje);
-
-	}
-
-	private static void eleccionDificultad(Tablero tablero) {
-		int opcion;
-		do {
-			mostrarMensaje("1. Facil\n2. Intermedio \n3. Técnico Especialista en Desactivación de Artefactos Explosivos ");
-			opcion=teclado.nextInt();
-		switch (opcion) {
-		case PEQUENIO:
-         tablero.creacionJuegoFacil();
-         tablero.mostrarTablero();
-         
-			comienzoJuego(tablero);
-         
-         
-         
-         
-			break;
-
-		case MEDIANO:
-//			 tablero.creacionJuegoMedio();
-			break;
-
-		case GRANDE:
-//			 tablero.creacionJuegoTécnicoEspecialistaEnDesactivaciónDeArtefactosExplosivos();
-			break;
 		
-		default:
-			mostrarMensaje("Opcion incorrecta");
-			break;
-		}	
-		} while (opcion != 10);
-		}
 
 	private static void comienzoJuego(Tablero tablero) {
-		mostrarMensaje("Seleccione una fila");
-         Integer fila = teclado.nextInt();
-         mostrarMensaje("Seleccionar columna");
-         Integer columna = teclado.nextInt();
-         
-         if (tablero.comprobarCantidadBomba(fila, columna) == 9) {
-			System.out.println("perdiste forrito");
-		} else {
-			System.out.println("La cantidad de bombas alrededor es: " + tablero.comprobarCantidadBomba(fila, columna));
-		}
+		Integer noBomba = 0;
+		Integer perdiste = 0;
+		do {
+			
+			System.out.println("Seleccione una fila");
+	         Integer fila = teclado.nextInt();
+	         System.out.println("Seleccionar columna");
+	         Integer columna = teclado.nextInt();
+	         
+	         if (tablero.comprobarCantidadBomba(fila, columna) == 9) {
+				System.out.println("perdiste forrito");
+				perdiste = 9;
+			} else {
+				
+				
+				System.out.println("La cantidad de bombas alrededor es: " + tablero.comprobarCantidadBomba(fila, columna));
+				
+				tablero.mostrarTablero();
+				
+				
+				if (tablero.comprobarFinJuego(noBomba) == 13) {
+					noBomba=13;
+				} else {
+					noBomba=0;
+				}
+			}
+		} while (perdiste != 9 && noBomba != 13);
+		
+		
         
 	}
 		

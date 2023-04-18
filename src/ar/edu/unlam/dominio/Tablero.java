@@ -114,14 +114,29 @@ this.tablero[filaRandom3][columnaRandom3] = 0;
 }
 
 public void mostrarTablero() {
-	creacionJuegoFacil();
-	for (int i = 0; i < tablero.length; i++) {
-		for (int j = 0; j < tablero.length; j++) {
+	for (int i = 0; i < this.tablero.length; i++) {
+		for (int j = 0; j < this.tablero.length; j++) {
 		System.out.print(this.tablero[i][j] + " ");
 		
 		}
 		System.out.println(" ");
 	}
+
+}
+
+public Integer comprobarFinJuego(Integer noBomba) {
+	
+	for (int i = 0; i < tablero.length; i++) {
+		for (int j = 0; j < tablero.length; j++) {
+			
+			if(this.tablero[i][j]==2) {
+				noBomba++;
+				
+			}
+			
+		}
+	}
+	return noBomba;
 
 }
 
@@ -153,6 +168,8 @@ public int comprobarCantidadBomba(Integer fila,Integer columna) {
 		
 		cantidadBombas = bombasParedAbajo(cantidadBombas, filaReal, columnaReal);
 		
+		this.tablero[filaReal][columnaReal] = 2;
+		
 		return cantidadBombas;
 		
 	}
@@ -165,12 +182,15 @@ private Integer esquinaInferiorDerecha(Integer cantidadBombas, Integer filaReal,
 	if (filaReal == 3 && columnaReal == 3) {
 		if (this.tablero[filaReal-1][columnaReal-1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal-1][columnaReal] == 0) {
 			cantidadBombas++;
+	
 		}
 		if (this.tablero[filaReal][columnaReal-1] == 0) {
 			cantidadBombas++;
+			
 		}
 	}
 	return cantidadBombas;
@@ -181,12 +201,15 @@ private Integer esquinaSuperiorDerecha(Integer cantidadBombas, Integer filaReal,
 	if (filaReal == 0 && columnaReal == 3) {
 		if (this.tablero[filaReal][columnaReal-1] == 0) {
 			cantidadBombas++;
+		
 		}
 		if (this.tablero[filaReal+1][columnaReal-1] == 0) {
 			cantidadBombas++;
+		
 		}
 		if (this.tablero[filaReal+1][columnaReal] == 0) {
 			cantidadBombas++;
+			
 		}
 	}
 	return cantidadBombas;
@@ -197,12 +220,15 @@ private Integer esquinaInferiorIzquierda(Integer cantidadBombas, Integer filaRea
 	if (filaReal == 3 && columnaReal == 0) {
 		if (this.tablero[filaReal-1][columnaReal] == 0) {
 			cantidadBombas++;
+		
 		}
 		if (this.tablero[filaReal-1][columnaReal+1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal][columnaReal+1] == 0) {
 			cantidadBombas++;
+			
 		}
 	}
 	return cantidadBombas;
@@ -213,12 +239,15 @@ private Integer esquinaSuperiorIzquierda(Integer cantidadBombas, Integer filaRea
 	if (filaReal == 0 && columnaReal == 0) {
 		if (this.tablero[filaReal][columnaReal+1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal+1][columnaReal] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal+1][columnaReal+1] == 0) {
 			cantidadBombas++;
+			
 		}
 	}
 	return cantidadBombas;
@@ -229,27 +258,35 @@ private Integer bombasMedio(Integer cantidadBombas, Integer filaReal, Integer co
 	if(filaReal != 0 && columnaReal != 0 && filaReal != 3 && columnaReal != 3 ) {
 		if (this.tablero[filaReal-1][columnaReal-1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal-1][columnaReal] == 0) {
 			cantidadBombas++;
+		
 		}
 		if (this.tablero[filaReal-1][columnaReal+1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal][columnaReal-1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal+1][columnaReal-1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal+1][columnaReal+1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal+1][columnaReal] == 0) {
 			cantidadBombas++;
+		
 		}
 		if (this.tablero[filaReal][columnaReal+1] == 0) {
 			cantidadBombas++;
+			
 		}
 	}
 	return cantidadBombas;
@@ -260,18 +297,23 @@ private Integer bombasParedIzq(Integer cantidadBombas, Integer filaReal, Integer
 	if(filaReal == 1 && columnaReal == 0 || filaReal == 2 && columnaReal == 0 ) {
 		if (this.tablero[filaReal-1][columnaReal] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal-1][columnaReal+1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal][columnaReal+1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal+1][columnaReal] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal+1][columnaReal+1] == 0) {
 			cantidadBombas++;
+			
 		}
 	}
 	return cantidadBombas;
@@ -282,18 +324,23 @@ private Integer bombasParedArriba(Integer cantidadBombas, Integer filaReal, Inte
 	if(filaReal == 0 && columnaReal == 1 || filaReal == 0 && columnaReal == 2 ) {
 		if (this.tablero[filaReal][columnaReal-1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal][columnaReal+1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal+1][columnaReal+1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal+1][columnaReal] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal+1][columnaReal-1] == 0) {
 			cantidadBombas++;
+			
 		}
 	}
 	return cantidadBombas;
@@ -304,18 +351,23 @@ private Integer bombasParedAbajo(Integer cantidadBombas, Integer filaReal, Integ
 	if(filaReal == 3 && columnaReal == 1 || filaReal == 3 && columnaReal == 2 ) {
 		if (this.tablero[filaReal][columnaReal-1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal][columnaReal+1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal-1][columnaReal+1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal-1][columnaReal] == 0) {
 			cantidadBombas++;
+	
 		}
 		if (this.tablero[filaReal-1][columnaReal-1] == 0) {
 			cantidadBombas++;
+			
 		}
 	}
 	
@@ -327,18 +379,23 @@ private Integer bombasParedDerecha(Integer cantidadBombas, Integer filaReal, Int
 	if(filaReal == 1 && columnaReal == 3 || filaReal == 2 && columnaReal == 3) {
 		if (this.tablero[filaReal-1][columnaReal-1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal][columnaReal-1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal+1][columnaReal-1] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal+1][columnaReal] == 0) {
 			cantidadBombas++;
+			
 		}
 		if (this.tablero[filaReal-1][columnaReal] == 0) {
 			cantidadBombas++;
+			
 		}
 		
 	}
